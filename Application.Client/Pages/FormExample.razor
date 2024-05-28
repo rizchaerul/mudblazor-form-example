@@ -13,17 +13,36 @@
             <DataAnnotationsValidator />
 
             <div class="mb-3">
-                <MudTextField Clearable Variant="Variant.Outlined" Label="Full Name" @bind-Value="Form.FullName" />
-                <ValidationMessage class="mud-error-text" For="() => Form.FullName" />
+                <MudTextField @bind-Value="Form.FullName" Label="Full Name" Clearable Variant="Variant.Outlined" />
+                <ValidationMessage For="() => Form.FullName" class="mud-error-text" />
             </div>
 
             <div class="mb-3">
-                <MudTextField Clearable Variant="Variant.Outlined" Label="Address" @bind-Value="Form.Address" />
-                <ValidationMessage class="mud-error-text" For="() => Form.Address" />
+                <MudTextField @bind-Value="Form.Address" Label="Address" Clearable Variant="Variant.Outlined" />
+                <ValidationMessage For="() => Form.Address" class="mud-error-text" />
             </div>
 
             <div class="mb-4">
-                <MudDatePicker Clearable Variant="Variant.Outlined" Label="Date Of Birth" @bind-Date="Form.DateOfBirth" />
+                <MudDatePicker @bind-Date="Form.DateOfBirth" Label="Date Of Birth" Clearable
+                    Variant="Variant.Outlined" />
+                <ValidationMessage For="() => Form.DateOfBirth" class="mud-error-text" />
+            </div>
+
+            <div class="mb-4">
+                <MudAutocomplete
+                    @bind-Value="Form.FavoriteSong"
+                    Label="Favorite Song"
+
+                    SearchFunc="GetSongs"
+                    ToStringFunc="(model) => model?.Description"
+
+                    Clearable
+                    Strict="false"
+                    ResetValueOnEmptyText
+
+                    DebounceInterval="500"
+                    Variant="Variant.Outlined"
+                />
                 <ValidationMessage class="mud-error-text" For="() => Form.DateOfBirth" />
             </div>
 
