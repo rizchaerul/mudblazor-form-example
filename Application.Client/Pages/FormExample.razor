@@ -1,0 +1,41 @@
+@page "/form-example"
+
+<MudContainer MaxWidth="MaxWidth.ExtraSmall">
+    <fieldset disabled="@IsLoading" class="py-5">
+        @if (IsLoading)
+        {
+            <div class="mb-5">
+                Loading...
+            </div>
+        }
+
+        <EditForm EditContext="EditContext">
+            <DataAnnotationsValidator />
+
+            <div class="mb-3">
+                <MudTextField Clearable Variant="Variant.Outlined" Label="Full Name" @bind-Value="Form.FullName" />
+                <ValidationMessage class="mud-error-text" For="() => Form.FullName" />
+            </div>
+
+            <div class="mb-3">
+                <MudTextField Clearable Variant="Variant.Outlined" Label="Address" @bind-Value="Form.Address" />
+                <ValidationMessage class="mud-error-text" For="() => Form.Address" />
+            </div>
+
+            <div class="mb-4">
+                <MudDatePicker Clearable Variant="Variant.Outlined" Label="Date Of Birth" @bind-Date="Form.DateOfBirth" />
+                <ValidationMessage class="mud-error-text" For="() => Form.DateOfBirth" />
+            </div>
+
+            <MudGrid>
+                <MudItem xs="6">
+                    <MudButton OnClick="() => ResetForm()" Color="Color.Error" Variant="Variant.Outlined" style="width: 100%;">Reset</MudButton>
+                </MudItem>
+
+                <MudItem xs="6">
+                    <MudButton OnClick="HandleSubmit" Color="Color.Primary" Variant="Variant.Filled" style="width: 100%;">Submit</MudButton>
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+    </fieldset>
+</MudContainer>

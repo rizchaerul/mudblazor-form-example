@@ -1,16 +1,43 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+<MudThemeProvider Theme="ApplicationTheme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
+<MudLayout>
+    <MudAppBar>
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        Application
+    </MudAppBar>
+
+    <MudDrawer @bind-Open="@drawerOpen">
+        <AppNavMenu />
+    </MudDrawer>
+
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    bool drawerOpen = true;
+
+    MudTheme ApplicationTheme = new()
+    {
+        Palette = new PaletteLight()
+        {
+            Primary = "#0D2237",
+            AppbarBackground = "#0D2237",
+        },
+
+        LayoutProperties = new LayoutProperties()
+        {
+            DefaultBorderRadius = "8px",
+        }
+    };
+
+    void DrawerToggle()
+    {
+        drawerOpen = !drawerOpen;
+    }
+}
