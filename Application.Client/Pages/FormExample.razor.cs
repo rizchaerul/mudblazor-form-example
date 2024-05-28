@@ -1,8 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http.Json;
+using System.Text.Json;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
+using MudBlazor.Extensions;
 
 namespace Application.Client.Pages;
 
@@ -63,6 +65,8 @@ public partial class FormExample : ComponentBase
             // delay submit data ke server
             await Task.Delay(2000);
             Snackbar.Add("Success.", Severity.Success);
+
+            Console.WriteLine(JsonSerializer.Serialize(Form));
 
             // cara 1
             ResetForm();
